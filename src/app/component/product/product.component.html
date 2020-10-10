@@ -1,0 +1,38 @@
+<mat-card>
+    <mat-card-header>
+        <!-- kurung kurawal pada title digunakan untuk data binding yaitu memanggil variabel title di product -->
+        <mat-card-title>{{title}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="uk-flex">
+            <span class="uk-width-expand"></span>
+            <!-- (-1) artinya penambahan data baru. jadi memanfaatkan dialog untuk menambahkan data baru sekaligus untuk pembaharuan-->
+            <button mat-flat-button color="primary" (click)="productDetail({},-1)">Add Product</button>
+        </div>
+        <table class="uk-table uk-table-middle uk-table-divider">
+            <thead>
+                <th>No</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>Year</th>
+                <th>Price</th>
+                <th align="right">Action</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let book of books; let idx=index">
+                    <td>{{idx+1}}</td>
+                    <td>{{book.title}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.publisher}}</td>
+                    <td>{{book.year}}</td>
+                    <td>{{book.price}}</td>
+                    <td align="right">
+                        <button mat-button color="primary" (click)="productDetail(book, idx)">Edit</button>
+                        <button mat-button color="warn" (click)="deleteProduct(idx)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </mat-card-content>
+</mat-card>

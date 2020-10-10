@@ -1,0 +1,62 @@
+<ng-container>
+    <!--toolbar-->
+    <mat-toolbar class="example-header">
+        <!-- sidenav toggle untuk mengakses toogle utk sidenav tertentu dengan tag sidenav -->
+    <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>ADMIN</span>
+    <div class="uk-width-expand"></div>
+    <button mat-button >DOWNLOAD</button>
+    </mat-toolbar>
+    <!--end toolbar-->
+    
+    <mat-sidenav-container class="admin-container">
+    
+      <mat-sidenav 
+      #sidenav 
+      mode='{{mode}}' 
+      [position]="'start'" 
+      opened 
+      class="sidenav-left"
+      [fixedInViewport]="true" 
+      [fixedTopGap]="60"
+      [fixedBottomGap]="0">
+    
+      <mat-nav-list>
+            <mat-list-item routerLink="/admin/dashboard">
+                <mat-icon matListIcon>dashboard</mat-icon>
+                <h3 matLine>Dashboard</h3>
+            </mat-list-item>
+            <mat-list-item routerLink="/admin/product">
+                <mat-icon matListIcon>camera_enchange</mat-icon>
+                <h3 matLine>Products</h3>
+            </mat-list-item>
+       </mat-nav-list>
+      </mat-sidenav>
+    
+    <mat-sidenav 
+    #sidenav 
+    mode="over" 
+    [position]="'end'" 
+    class="example-sidenav"
+    [fixedInViewport]="true" 
+    [fixedTopGap]="60"
+    [fixedBottomGap]="0">
+    
+       
+    
+    </mat-sidenav>
+    <!--sidenav content-->
+    <mat-sidenav-content style="padding: 60px; background-color: #ccc;">
+    <!--halaman-halaman tampil disini-->
+        <router-outlet></router-outlet>
+    
+    </mat-sidenav-content>
+    <!--end sidenav content-->
+    </mat-sidenav-container>   
+</ng-container>
+    
+    
+    
+    
