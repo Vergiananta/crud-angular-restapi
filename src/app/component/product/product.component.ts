@@ -19,9 +19,16 @@ export class ProductComponent implements OnInit {
     this.title= 'Product';
    this.getBooks();
   }
+
+  loading:boolean;
   getBooks(){
+    this.loading=true;
     this.api.get('books').subscribe(result => {
       this.books=result;
+      this.loading=false;
+    }, error =>{
+      this.loading=false;
+      alert('ada kesalahan!!')
     })
   }
   productDetail(data, idx){
@@ -35,16 +42,18 @@ export class ProductComponent implements OnInit {
           // jika idx = -1 maka datanya dipush/ditambahkan ke elemen terakhir
           this.books.push(res);
         } else {
-          this.books[idx]=res;
+          this.books[idx]=data;
         }
       }
     })
   }
 
-  deleteProduct(idx){
+  deleteProduct(id, idx){
     var conf = confirm('Delete item ? ');
     if (conf) {
-      this.books.splice(idx, 1);
+     this.api.delete('books/'+ id).subscribe(result => {
+       this.books.splice(idx, 1)
+     })
     }
   }
 }
